@@ -13,6 +13,8 @@ public class ObjectGridInteractionController : MonoBehaviour
 
     public Transform gridHighlight;
 
+    public float pinchThreshold = 0.5f; //0 is open hand, 1 is pinch from Leap.Hand.PinchStrength
+
 //=============================
     bool isHoveringOverOccupier = false;
     GameObject lastClosest; //previous closest gamepiece hovering over
@@ -27,6 +29,10 @@ public class ObjectGridInteractionController : MonoBehaviour
 
 //==============================
 
+    private bool IsPinching(Leap.Hand h){
+        return h.PinchStrength >= pinchThreshold;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -36,13 +42,13 @@ public class ObjectGridInteractionController : MonoBehaviour
             //Use hand position to highlight the nearest game piece
             GridLocation closestGrid = objectGrid.GetClosestGridLocation(h.GetPredictedPinchPosition());
             GameObject gamepiece = objectGrid.GetClosestOccupier(h.GetPredictedPinchPosition(), maxDistance);
-            if(!h.IsPinching()){
+            if(!IsPinching(h)){
                 DoHoverBehavior(gamepiece);
                 gridHighlight.gameObject.SetActive(false);
             }
             
             //Move piece to nearest grid point:
-            if(isHoveringOverOccupier && h.IsPinching()){ 
+            if(isHoveringOverOccupier && IsPinching(h)){ 
                 if(grabbedPiece == null){
                     stoppedGrab = false;
                     grabbedPiece = gamepiece;

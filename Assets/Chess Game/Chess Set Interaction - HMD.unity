@@ -547,7 +547,7 @@ Transform:
   m_LocalScale: {x: 1.0000001, y: 1.0000006, z: 1.0000001}
   m_Children: []
   m_Father: {fileID: 145854353}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 8.5, y: 0, z: 0}
 --- !u!1001 &715283528
 PrefabInstance:
@@ -1779,7 +1779,7 @@ Transform:
   m_Children:
   - {fileID: 438352044}
   m_Father: {fileID: 1195653047}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1150868257
 MonoBehaviour:
@@ -1809,8 +1809,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectGrid: {fileID: 438352045}
   _provider: {fileID: 145854354}
-  maxDistance: 3
+  maxDistance: 1.2
   gridHighlight: {fileID: 903534890}
+  pinchThreshold: 0.7
 --- !u!4 &1195653047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5096850158276147074, guid: 9cdaf98efe7c69adca90cde48da559cc,
@@ -2505,6 +2506,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2842246568169247796, guid: 9cdaf98efe7c69adca90cde48da559cc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964928, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
       propertyPath: m_ClearFlags
@@ -2745,6 +2751,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8881024874196036000, guid: 9cdaf98efe7c69adca90cde48da559cc,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9cdaf98efe7c69adca90cde48da559cc, type: 3}
 --- !u!1001 &1654517100
@@ -2954,7 +2965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4822923098130148, guid: 33edf201cbc6fe645ad9078697cd2aea, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4822923098130148, guid: 33edf201cbc6fe645ad9078697cd2aea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6863,7 +6874,7 @@ Transform:
   - {fileID: 6826069803134841277}
   - {fileID: 4141954393265448705}
   m_Father: {fileID: 145854353}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6137275850396918893
 Transform:
