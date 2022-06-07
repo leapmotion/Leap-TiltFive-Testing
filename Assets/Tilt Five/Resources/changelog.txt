@@ -1,0 +1,271 @@
+## [1.1.0] - Gnarly Gnoll
+* Control Panel
+  * Support for XE Gameboards
+  * New gameboard configuration UI for choosing your gameboard layout and rotation
+  * Rename "wands" list to "accessories" and show the current gameboard in this list as an accessory
+  * Allow scrolling of the accessories list to allow setting options for more than a few accessories
+  * Fix a crash if the TiltFive App Data folder is missing and lazily create this folder to store logs
+  * Use a more reliable logging mechanism, useful when Enhanced Logging setting is turned on
+  * Display wand serial numbers correctly
+
+* Glasses
+  * Correctly wake if Glasses are sleeping for certain interactions
+  * Allow for booting and response to simple commands when plugged into a USB2 port
+  * Update firmware to recognize XE gameboard tracking points and newer LE gameboard points (to avoid crossing a fold or cut line)
+  * Run cooling fans at a constant rate, except in some pre-production glasses (such as Kickstarter Beta Backer models) which still vary the fan speed
+
+* Wand
+  * Update Wand tracking algorithms for better computation of its location
+  * Set a minimum amount of travel for the wand's analog joystick to register off-center movement, to resolve some drift issues reported
+  * Fix some situations where the SDK would report wands disappearing
+  * Fix a bug that caused wand tracking to become unstable after extended use
+
+* Drivers and Tilt Five Software Install
+  * Fix uninstaller issue where a few files were not removed and update the uninstaller executable filename
+  * The Tilt Five Service, Notifier and Unity plugin files are now signed Windows binaries
+
+* Native Development Kit Beta (Developer SDK)
+  * The initial beta release of the NDK for Windows is included in the Developer SDK!
+  * The NDK is the same infrastructure used for the other SDKs and allows low level access to the Glasses and Wands
+
+* Unity Plug-in (Developer SDK)
+  * Support for the XE Gameboard with the Unity gameboard gizmo
+  * Option in the editor to manually override the Control-Panel-selected gameboard type for the gizmo
+  * Unload on application quit or when stopping play in the Unity Editor, elimnating the need to restart the Unity Editor every time an application is run
+  * Provide the user-defined glasses name from Control Panel to Unity
+  * Apply scaling to the camera near and far clipping planes to keep the user experience consistent
+  * Fix a bug where the Unity process can be stuck open because of a D3D device still in use
+  * Getting glasses pose now returns an error if the board is not in view
+  * "System" and "Z" button names are deprecated, please use "T5" and "Three" in new code
+
+## [1.0.1] - Frenetic Flumph
+* Control Panel
+  * Added Beta Backer credits to the About screen
+  * Fixed issue where Notifier sometimes failed to start
+  * Fixed issue causing Control Panel to have high CPU usage
+
+* Glasses
+  * Adjusted speaker output level and EQ
+
+* Wand
+  * Made tracking more robust to distractions in the environment
+
+* Unity Plug-in (Developer SDK)
+  * Fixed an issue where the wand fingertips and aim pose lagged behind the grip pose
+
+## [1.0.0] - Frenetic Flumph
+* Control Panel
+  * No longer defaults to developer mode on installation
+  * System tray icon shows when glasses are plugged in or the Tilt Five Control Panel is started
+  * Fix focus issues interacting with the system tray
+  * Logging improvements for better issue reporting, including a “Save log package” menu item to generate a ZIP file with pertinent logs
+  * Redesigned wand details UI
+  * Wand pairing LED examples updated for new Wand pairing experience
+  * Show progress of updating wands
+  * Show additional wand details such as serial number, hardware revision, and calibration state and make text such as this selectable and copiable to the clipboard
+  * Can now detect the connection state of the service and offer a support link to help fix the problem on your PC
+  * Fix a bug where the tray icon could remain visible after exiting
+
+* Glasses
+  * Position tracking improvements
+  * Calibration improvements
+  * Allow glasses to be identified by Windows with proper names
+  * Fix a bug where glasses could not be found on some systems
+  * Verify glasses are running the correct firmware version for a particular session
+  * Thermal thresholds tweaked for newer versions of the hardware
+
+* Wand
+  * Radio protocol improvements
+  * Search for wand speed improved
+  * LED flashing colors updated for pairing status display
+  * Tracking position using both movement and video feedback from glasses
+  * New LED pattern variants supported for future multiplayer uses
+  * LED brightness adjustments
+  * Software update is more likely to complete in low-battery states
+  * Wand position updates are now synchronized with V-Sync
+  * Multiple wand LED state fixed
+  * Accessibility options per wand for inverting the Y axis and swapping the 1 and 2 buttons
+  * Allow for greater maximum acceleration during wand shaking for better tracking of gestures
+  * Fix issues where wand reconnection to a power-cycled glasses would disable V-Sync
+
+* Drivers and Tilt Five Software Install
+  * Use separate installers for driver (required for all users) and developer SDK
+  * Installer signed with Tilt Five’s public certificate
+  * Better performance for certain USB data streaming cases and control updates
+  * Logging improvements for better issue reporting including log rotation
+
+* Unity Plug-in (Developer SDK)
+  * Simplify post-processing setup
+  * Fix bug where letterboxing black bars could display stale data
+  * Fix bug where Unity plug-in calls could block the caller for up to 600ms when there was no Tilt Five service running
+  * Fix a build error where pluginversion.txt was not found by Unity
+
+## [0.15.0] - Excellent Elemental
+* Added
+	* Firmware: Added initial microphone support
+	* Firmware: Added low-power "sleep" mode and thermal-backoff throttling
+	* Firmware: Added projector temperature monitoring
+	* Firmware: Added the ability to hard-reset the SoC via GPIO
+	* Firmware: Enabled additional code quality tools (Inc global [[nodiscard]])
+	* Host: Added internal support for multiple devices
+	* Host: Added platform specific settings storage
+	* Host: Major restructure of host side software
+	* Misc: Added additional display modes to internal test tools
+	* Misc: Added enhanced versioning utilities
+	* SDK: Gameboard type added to pose information
+* Changes
+	* Control Panel: Added placeholder device while device reboots
+	* Firmware: Adjusted default USB speaker volume
+	* Firmware: Audio Code cleanup
+	* Firmware: Error checking code cleanup
+	* Firmware: Improved warper pixel sampling location
+	* Firmware: Misc improvements to USB handling
+	* Firmware: Reduce SPI traffic for radio
+	* Firmware: Restructured USB interfaces
+	* Host: Improved uninstaller
+	* Host: Moved wand tracking out of SDK into service
+	* Host: Optimized client side IMU data structures
+	* Host: Switched from UMDF to WinUSB based driver
+	* Host: Switched to abstract firmware providers (OS independent)
+	* Host: Switched to UNICODE builds by default
+	* Host: Updated Flutter to 2.5.3
+	* Host: Windows installer checks to ensure Windows 10, version 1703+ is in use
+	* Misc: Added multiple string handling utilities
+	* Misc: Formatting improvements throughout codebase
+	* Misc: Reimplement internal test tools using NDK (Liveview, Squares, Wandviz)
+	* Misc: Updated internal build tools
+	* Misc: Utility code cleanup
+	* Unity Plugin: Code cleanup
+	* Unity Plugin: Integrated "TrackingUpdated" flag into TrackableCore
+* Fixes
+	* Control Panel: Multiple small fixes
+	* Factory Software: Multiple small fixes
+	* Firmware: Added workarounds for I2S driver bugs
+	* Firmware: Fixed a source of audio crackle (DAC clock settings)
+	* Firmware: Multiple small fixes
+	* Unity Plugin: Added a warning for bad head pose camera scale
+	* Unity Plugin: Added pupillary distance query to Unity SDK
+	* Unity Plugin: Automatic reject bad wand states
+	* Unity Plugin: Fixed multiple small issues with 3d API integration
+	* Unity Plugin: Multiple small fixes
+	* Wand Firmware: Multiple small fixes
+
+[0.14.1] 2021-07-19 - TiltFive-SDK-Setup-0.14.1.exe
+	* Improved dark color rendering.
+	* Rotated the default gameboard orientation to match the physical gameboard.
+		* Scene should no longer be rotated 90° when the T5 logo faces the user.
+	* Updated SDK-Examples to 1.10
+	* Added 3D models for wand and glasses
+	* Fix for jittery behavior when moving the virtual gameboard around in the scene.
+	* Slightly improved sharpness / readability by reducing default FOV from 55 to 48.
+	* Audio corruption fix
+		* Clicks are still expected, with another fix coming in the next release
+	* Various display bug fixes
+
+
+
+
+[0.14.0] 2021-06-22 - TiltFive-SDK-Setup-0.14.0.exe
+	* New Control Panel
+		* Switched to Flutter-based UI.
+		* Added Wand Pairing GUI.
+		* Shows Glasses connectivity status.
+	* Added new SDK Installer / Uninstaller.
+	* Implemented additional tracked points on the wand, such as the wand tip.
+	* Fix for USB instability on some host controllers.
+	* Slightly improved wand tracking.
+	* Improved Glasses image stabilization.
+	* Known Issue: Spurious "Unsupported USB port" after fixing a backwards USB-C adapter.
+	* Known Issue: Occasional control panel crashes.
+	* Known issue: Occasional color field separation.
+
+
+[0.13.0] 2021-05-12 - TiltFive-Unity-SDK-Rev13-CollaborativeCyclops.zip
+	* Added support for scriptable render pipelines.
+	* Reorganized SDK scripts; now using assembly definitions.
+
+[0.12.1] 2021-05-03 - TiltFive-Unity-SDK-Rev12.1-BashfulBasilisk.zip
+
+	* Added support for factory-built glasses.
+
+[0.12.0] 2021-04-21 - TiltFive-Unity-SDK-Rev12-BashfulBasilisk.zip
+
+	* Added initial visual-only Wand Tracking support.
+		* Limitation: 30fps wand pose updates
+		* Known issue: Coaxial rotations (i.e. twisting the wand in place) are not yet tracked.
+	* Added post processing support.
+	* Added new scenes to sdk-examples project.
+		* These reference implementations demonstrate interaction models and UI experiments that developers may find thought-provoking or helpful while developing their own applications.
+	* New Wand firmware (0.7)
+		* Wand LED blinks green when connected to save power.
+	* Updated wand_pairing tool
+		* Pairing code sequence reduced to 4 button presses
+		* Increased stability of the pairing/updating process.
+	* Tweaked TiltFiveManager's custom inspector to separate scale and game board settings from the glasses settings.
+	* Default IPD set to 59mm
+
+[0.11.2] 2021-03-26 - TiltFive-Unity-SDK-Rev11.2-AlliterativeAlpaca.zip
+
+	* Updated wand pairing tool and pairing instructions.
+
+[0.11.1] 2021-03-25 - TiltFive-Unity-SDK-Rev11-AlliterativeAlpaca.zip
+
+	* Fixed typo in .bat file.
+
+[0.11.0] 2021-03-24 - TiltFive-Unity-SDK-Rev11-AlliterativeAlpaca.zip
+
+	* Added new Windows Driver installer.
+	* Added new Tilt Five Control Panel
+		* Known Issue: 'Help>Check for Updates' menu option on the control panel goes to a web page that doesn't exist.
+		* Known Issue: 'Tools>Logdog' and 'Tools>Liveview' menu options on the control panel show a 'something went wrong' message (Liveview and logdog are not included in this release).
+		* Known Issue: Launching the control panel on Windows computers configured for Spanish or French will result in reduced menus, missing error messages and possibly crashes.
+	* New Wand firmware (0.6)
+		* Enables the Wand to remember the most recently-paired Glasses.
+	* Analog wand joystick/trigger values now span the expected ranges.
+		* Known Issue: Wand states may occasionally be dropped when the stick is fully tilted.
+
+
+[0.10.0] 2021-03-04 - TiltFive-Unity-SDK-Rev10.zip
+
+	* Analog wand joystick/trigger values are more consistent.
+	* Renamed GetStickAxis() to GetStickTilt() in TiltFive.Input
+	* Added TryGetButton(), TryGetButtonDown(), TryGetButtonUp(), TryGetStickTilt(), TryGetTrigger() to TiltFive.Input
+	* Known issue: Wand joystick and trigger values may not reach their minimum/maximum extents (e.g. stick values may span [-0.75,0.75] instead of [-1.0, 1.0])
+
+
+[0.9.0] 2021-02-18 - TiltFive-Unity-SDK-Rev9.zip
+
+	* Fixed missing audio on Windows.
+	* Workaround on Windows for USB instability issue when connecting over SuperSpeedPlus.
+
+[0.8.0] 2021-01-25 - TiltFive-Unity-SDK-Rev8.zip
+
+	* Added initial Windows 10 support.
+
+[0.7.0] 2021-01-04 - TiltFive-Unity-SDK-Rev7.zip
+
+	* Added initial wand input support.
+	* Known issue: There may be some drift/bias on the joystick for this release. This can be mitigated somewhat just by tilting the stick all the way around to calibrate it.
+
+[0.5.0] 2020-11-02 - TiltFive-Unity-SDK-Rev5.zip
+
+	* Enabled experimental audio out over the glasses speakers.
+
+[0.4.0] 2020-10-24 - TiltFive-Unity-SDK-Rev4.zip
+
+	* Fixed bug causing reduced horizontal resolution.
+	* Added stereoscopic preview mode.
+	* Added letterboxing/pillarboxing when previewing the glasses cameras.
+
+[0.3.0] 2020-10-08 - TiltFive-Unity-SDK-Rev3.zip
+
+	* Replaced udev rules setup script with .deb executable.
+
+[0.2.0] 2020-10-06 - TiltFive-Unity-SDK-Rev2.zip
+
+	* Fixed an issue that sometimes caused tracking to fail on initial attempts to boot the glasses.
+	* Increased the FOV of the projected image.
+
+[0.1.0] 2020-09-29 -
+
+	* Initial Release

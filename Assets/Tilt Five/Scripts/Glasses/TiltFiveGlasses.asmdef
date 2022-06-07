@@ -1,0 +1,31 @@
+{
+    "name": "TiltFiveGlasses",
+    "references": [
+        "TiltFiveLogging",
+        "TiltFiveUtility",
+        "TiltFiveSettings",
+        "TiltFiveGameBoard",
+        "TiltFiveTracking",
+        "TiltFiveCore"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.core",
+            "expression": "1.0",
+            "define": "TILT_FIVE_SRP"
+        },
+        {
+            "name": "com.unity.render-pipelines.universal",
+            "expression": "1.0",
+            "define": "TILT_FIVE_URP"
+        }
+    ],
+    "noEngineReferences": false
+}

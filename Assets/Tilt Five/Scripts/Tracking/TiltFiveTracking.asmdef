@@ -1,0 +1,18 @@
+{
+    "name": "TiltFiveTracking",
+    "references": [
+        "TiltFiveLogging",
+        "TiltFiveSettings",
+        "TiltFiveGameBoard",
+        "TiltFiveUtility"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

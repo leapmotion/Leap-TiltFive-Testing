@@ -1,0 +1,21 @@
+{
+    "name": "TiltFiveWand",
+    "references": [
+        "TiltFiveCore",
+        "TiltFiveTracking",
+        "TiltFiveSettings",
+        "TiltFiveGlasses",
+        "TiltFiveGameBoard",
+        "TiltFiveUtility",
+        "TiltFiveLogging"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

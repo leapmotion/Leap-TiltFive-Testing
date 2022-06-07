@@ -1,0 +1,17 @@
+{
+    "name": "TiltFiveGameBoard",
+    "references": [
+        "TiltFiveSettings",
+        "TiltFiveUtility",
+        "TiltFiveCore",
+        "TiltFiveLogging"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}
