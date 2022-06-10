@@ -791,7 +791,7 @@ PrefabInstance:
     - target: {fileID: 5096850158276147073, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
       propertyPath: ShowGrid
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5096850158276147073, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
