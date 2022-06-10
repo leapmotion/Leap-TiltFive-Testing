@@ -131,7 +131,6 @@ GameObject:
   m_Component:
   - component: {fileID: 11621126}
   - component: {fileID: 11621125}
-  - component: {fileID: 11621127}
   m_Layer: 0
   m_Name: Leap Rig
   m_TagString: Untagged
@@ -176,26 +175,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11621127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11621124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f401abbba36e848925a235a4c3d745, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _provider: {fileID: 11621125}
-  _handCursor: {fileID: 0}
-  _handCursor2: {fileID: 0}
-  _shoulderRight: {fileID: 1685225235}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  _pinchText: {fileID: 0}
 --- !u!1 &19612629
 GameObject:
   m_ObjectHideFlags: 0
