@@ -37,5 +37,10 @@ public class LeapTurntableUI : MonoBehaviour
     void FixedUpdate()
     {
         RenderLines();
+
+        if(_turntable.fingertipCount > 0)
+            GetComponent<Renderer>().material.color = Color.yellow;
+        else
+            GetComponent<Renderer>().material.color = Color.white;
     }
 }

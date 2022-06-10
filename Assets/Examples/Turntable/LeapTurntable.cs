@@ -88,6 +88,9 @@ public class LeapTurntable : MonoBehaviour
     private SmoothedFloat _smoothedVelocity;
     private float _rotationalVelocity;
 
+    private int _fingertipCount = 0;
+    public int fingertipCount {get{return _fingertipCount;}}
+
     private void Awake()
     {
         if (_provider == null)
@@ -102,10 +105,7 @@ public class LeapTurntable : MonoBehaviour
     private void Update()
     {
 
-        if(_currTipPoints.Count > 0)
-            GetComponent<Renderer>().material.color = Color.yellow;
-        else
-            GetComponent<Renderer>().material.color = Color.white;
+        _fingertipCount = _currTipPoints.Count;
 
         Utils.Swap(ref _currTipPoints, ref _prevTipPoints);
 
