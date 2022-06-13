@@ -1,7 +1,7 @@
 # Leap Tiltfive Testing
  Test scenes trying out different hand tracking interactions with Tiltfive AR glasses
 
-![TiltFive hand interaction board game](imgs/hmd_interaction.gif)
+
 ![Bracket mounted to TiltFive glasses](imgs/HMD_mount.PNG)
 
 ## Introduction
@@ -27,9 +27,13 @@
  Note that each example is designed around the device orientation and that some interactions are better suited for certain device orientations. For example, the chess game interaction would not work well in Desktop-mode because the hand often exceeds the field of view of camera when reaching over the board. As an alternative, Hand Cursor scene demonstrates 2 methods of impelementing a virtual cursor to interact with your objects.
 
 ### Chess Game
-
+ Using Ultraleap hand tracking mounted to Tilt Five glasses, interacting naturally with your hands is possible. The user can naturally pickup and move pieces where they expect them to be in the real world. The interaction logic can be found on the 'Chess Game' gameobject under 'Tilt Five Game Board.' The hand tracking 'Leap Service Provider' is on the 'Tilt Five Camera' gameobject. Note that alignment between hand and image can be adjusted by changing 'SIR170 Location' gameobject relative to 'Tilt Five Camera' gameobject.
+![TiltFive hand interaction board game](imgs/hmd_interaction.gif)
 
 ### Hand Cursor
-
+ The example scene demonstrates 2 methods of controlling a virtual cursor with your hands. Sometimes it's not practical to interact 1-to-1 with virtual objects and selecting from a distance is preferable. The script 'Hand 2D Projection' on the 'Leap Rig' maps two cursors to hand movements. The first is a direct mapping between hand position and cursor position. The second cursor is determined from a raycast starting from a virtual shoulder through users' index finger knuckle. This enables a more natural directionality to the cursor and cursor position is invariant to if hand is pinching or not.
+![TiltFive hand interaction board game](imgs/handcursor.gif)
 
 ### Turntable
+ The Leap Turntable example uses the change in fingertip positions to calculate and apply a rotational velocity that dampens over time. The interaction zone where fingertips affect rotation can be customized using the table height and radius fields. The table can even have a tapered edge using 'Edge Angle' field to minimize change user rotates table inadvertently.
+![TiltFive hand interaction board game](imgs/turntable.gif)
