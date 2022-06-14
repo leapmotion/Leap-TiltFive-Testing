@@ -23,8 +23,8 @@ public class LeapTurntableUI : MonoBehaviour
             circlePointsLower[i] *= _turntable.lowerLevelRadius;
         }
 
-        _upperLine.transform.position = transform.position + (Vector3.up*_turntable.tableHeight);
-        _lowerLine.transform.position = transform.position + (Vector3.up*_turntable.lowerLevelHeight);
+        _upperLine.transform.position = transform.position + (Vector3.up*_turntable.tableHeight*transform.lossyScale.y);
+        _lowerLine.transform.position = transform.position + (Vector3.up*_turntable.lowerLevelHeight*transform.lossyScale.y);
 
         _upperLine.positionCount = circleVertNum;
         _lowerLine.positionCount = circleVertNum;
