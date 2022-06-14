@@ -26,7 +26,7 @@ public class ObjectGrid : MonoBehaviour
         if(!Application.isPlaying || !Debug_ShowGridCenters) return;
         //List<Vector3> gridLocations = GetGridLocations();
         foreach(KeyValuePair<string,GridLocation> g in board){
-            Gizmos.DrawSphere( transform.TransformPoint(g.Value.localPosition),.2f);
+            Gizmos.DrawSphere( transform.TransformPoint(g.Value.localPosition),.2f*transform.lossyScale.x);
         }
     }
 

@@ -57,7 +57,7 @@ public class ObjectGridInteractionController : MonoBehaviour
                 
                 //make grabbed piece follow hand:
                 Vector3 pinchPos = h.GetPredictedPinchPosition();
-                grabbedPiece.transform.position = new Vector3(pinchPos.x,pinchPos.y - 0.625f,pinchPos.z);//GetClosestGridLocation(h.GetPredictedPinchPosition());
+                grabbedPiece.transform.position = new Vector3(pinchPos.x,pinchPos.y - (0.625f * transform.lossyScale.x),pinchPos.z);//GetClosestGridLocation(h.GetPredictedPinchPosition());
                 gridHighlight.localPosition = objectGrid.GetClosestGridLocation(h.GetPredictedPinchPosition()).localPosition - (Vector3.up*0.6f);
                 gridHighlight.gameObject.SetActive(true);
 

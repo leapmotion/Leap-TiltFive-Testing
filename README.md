@@ -2,10 +2,16 @@
  Test scenes trying out different hand tracking interactions with Tiltfive AR glasses
 
 
-![Bracket mounted to TiltFive glasses](imgs/HMD_mount.PNG)
+![Bracket mounted to TiltFive glasses](imgs/HMD_mount.jpg)
 
 ## Introduction
  This repo includes example scenes exploring HMD and Desktop-mode hand tracking with the Tilt Five AR system. Each mode represents an expected Ultraleap tracking device orientation: mounted to the TiltFive glasses or laying next to the gameboard facing upward. Each Unity scene highlights a different method of virtual interaction. The 'Chess Game' example demonstrates grid-snapping and object highlighting to help make the user intent clear when interacting. The 'Hand Cursor' example demonstrates two methods of projecting hand position onto the gameboard. The 'Turntable' example demonstrates how to rotate around a virtual object with either hand. Note that each example is designed around the device orientation and that some interactions are better suited for certain device orientations. For example, the chess game interaction would not work well in Desktop-mode because the hand often exceeds the field of view of camera when reaching over the board.
+
+## Requirements:
+ Tilt Five Driver 1.1.0+
+ Unity 2019.4 LTS or later
+ Ultraleap Tracking Gemini 5.6+
+ (Tested on Windows with Ultraleap Unity plugin 5.10)
 
 ![CAD design](imgs/tiltfive_CAD_Assm.PNG)
 

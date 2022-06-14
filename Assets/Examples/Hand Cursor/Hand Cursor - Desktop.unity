@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657785, g: 0.49641365, b: 0.57481885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,15 +152,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editTimePose: 2
-  _interactionVolumeVisualization: 1
+  _interactionVolumeVisualization: 0
+  FOV_Visualization: 1
+  OptimalFOV_Visualization: 1
+  MaxFOV_Visualization: 1
   _frameOptimization: 0
   _physicsExtrapolation: 1
   _physicsExtrapolationTime: 0.011111111
+  _multipleDeviceMode: 0
+  _specificSerialNumber: 
   _trackingOptimization: 0
+  _preventInitializingTrackingMode: 0
   _workerThreadProfiling: 0
   _serverNameSpace: Leap Service
-  ExtrapolationAmount: 0
-  BounceAmount: 0
 --- !u!4 &11621126
 Transform:
   m_ObjectHideFlags: 0
@@ -789,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964928, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
-      propertyPath: m_BackGroundColor.r
+      propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964928, guid: 9cdaf98efe7c69adca90cde48da559cc,
@@ -799,8 +803,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964928, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
-      propertyPath: m_BackGroundColor.b
+      propertyPath: m_BackGroundColor.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5096850156648964929, guid: 9cdaf98efe7c69adca90cde48da559cc,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.43
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964929, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
@@ -809,8 +818,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964929, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.43
+      propertyPath: m_LocalRotation.w
+      value: 0.94028825
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964929, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
@@ -831,11 +840,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 39.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5096850156648964929, guid: 9cdaf98efe7c69adca90cde48da559cc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.94028825
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964934, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
@@ -874,6 +878,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6132178175923897642, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132178175923897642, guid: 9cdaf98efe7c69adca90cde48da559cc,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -889,6 +898,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6132178175923897642, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132178175923897642, guid: 9cdaf98efe7c69adca90cde48da559cc,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -900,16 +914,6 @@ PrefabInstance:
     - target: {fileID: 6132178175923897642, guid: 9cdaf98efe7c69adca90cde48da559cc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132178175923897642, guid: 9cdaf98efe7c69adca90cde48da559cc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132178175923897642, guid: 9cdaf98efe7c69adca90cde48da559cc,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6132178175923897642, guid: 9cdaf98efe7c69adca90cde48da559cc,
@@ -993,7 +997,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1068,6 +1072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04122797dd84ca43a07055f12d91e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _leapProvider: {fileID: 0}
   handedness: 1
   _showArm: 1
   _castShadows: 1
@@ -1077,6 +1082,10 @@ MonoBehaviour:
   _jointRadius: 0.008
   _cylinderRadius: 0.006
   _palmRadius: 0.015
+  _useCustomColors: 0
+  _sphereColor: {r: 0, g: 1, b: 0, a: 1}
+  _cylinderColor: {r: 1, g: 1, b: 1, a: 1}
+  SetIndividualSphereColors: 0
 --- !u!114 &6101305805309645623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,6 +1098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcd03e00992e084c8be61565d44b8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableOnAwake: 1
 --- !u!114 &6101561422964597827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,16 +1111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592f16851a620743868a31232613370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leapProvider: {fileID: 11621125}
-  ModelPool:
-  - GroupName: Capsule Hands
-    _handModelManager: {fileID: 0}
-    LeftModel: {fileID: 6101761177541198243}
-    IsLeftToBeSpawned: 0
-    RightModel: {fileID: 6098876337824837567}
-    IsRightToBeSpawned: 0
-    IsEnabled: 1
-    CanDuplicate: 0
 --- !u!114 &6101761177541198243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,6 +1123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04122797dd84ca43a07055f12d91e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _leapProvider: {fileID: 0}
   handedness: 0
   _showArm: 1
   _castShadows: 1
@@ -1132,6 +1133,10 @@ MonoBehaviour:
   _jointRadius: 0.008
   _cylinderRadius: 0.006
   _palmRadius: 0.015
+  _useCustomColors: 0
+  _sphereColor: {r: 0, g: 1, b: 0, a: 1}
+  _cylinderColor: {r: 1, g: 1, b: 1, a: 1}
+  SetIndividualSphereColors: 0
 --- !u!114 &6101976167394938999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,6 +1149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcd03e00992e084c8be61565d44b8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableOnAwake: 1
 --- !u!4 &6137128208108824739
 Transform:
   m_ObjectHideFlags: 0
