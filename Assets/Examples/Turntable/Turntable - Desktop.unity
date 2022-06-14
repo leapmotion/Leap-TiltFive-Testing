@@ -1239,28 +1239,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableOnAwake: 1
---- !u!114 &6101561422964597827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6142425252150428757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c592f16851a620743868a31232613370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _leapProvider: {fileID: 11621125}
-  ModelPool:
-  - GroupName: Capsule Hands
-    _handModelManager: {fileID: 0}
-    LeftModel: {fileID: 6101761177541198243}
-    IsLeftToBeSpawned: 0
-    RightModel: {fileID: 6098876337824837567}
-    IsRightToBeSpawned: 0
-    IsEnabled: 1
-    CanDuplicate: 0
 --- !u!114 &6101761177541198243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1371,7 +1349,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6137146747019130661}
-  - component: {fileID: 6101561422964597827}
   m_Layer: 0
   m_Name: Hand Models
   m_TagString: Untagged

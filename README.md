@@ -1,27 +1,26 @@
-# Leap Tiltfive Testing
- Test scenes trying out different hand tracking interactions with Tiltfive AR glasses
-
+# Leap Tilt Five Testing
+ Test scenes trying out different hand tracking interactions with [Tilt Five AR glasses](https://www.tiltfive.com/)
 
 ![Bracket mounted to TiltFive glasses](imgs/HMD_mount.jpg)
 
 ## Introduction
- This repo includes example scenes exploring HMD and Desktop-mode hand tracking with the Tilt Five AR system. Each mode represents an expected Ultraleap tracking device orientation: mounted to the TiltFive glasses or laying next to the gameboard facing upward. Each Unity scene highlights a different method of virtual interaction. The 'Chess Game' example demonstrates grid-snapping and object highlighting to help make the user intent clear when interacting. The 'Hand Cursor' example demonstrates two methods of projecting hand position onto the gameboard. The 'Turntable' example demonstrates how to rotate around a virtual object with either hand. Note that each example is designed around the device orientation and that some interactions are better suited for certain device orientations. For example, the chess game interaction would not work well in Desktop-mode because the hand often exceeds the field of view of camera when reaching over the board.
+ This repo includes example scenes exploring HMD and Desktop-mode hand tracking with the [Tilt Five AR system](https://www.tiltfive.com/). Each mode represents an expected [Ultraleap tracking device](https://www.ultraleap.com/tracking/) orientation: mounted to the TiltFive glasses or laying next to the gameboard facing upward. Each Unity scene highlights a different method of virtual interaction. The 'Chess Game' example demonstrates grid-snapping and object highlighting to help make the user intent clear when interacting. The 'Hand Cursor' example demonstrates two methods of projecting hand position onto the gameboard. The 'Turntable' example demonstrates how to rotate around a virtual object with either hand. Note that each example is designed around the device orientation and that some interactions are better suited for certain device orientations. For example, the chess game interaction would not work well in Desktop-mode because the hand often exceeds the field of view of camera when reaching over the board.
 
 ## Requirements:
- Tilt Five Driver 1.1.0+
- Unity 2019.4 LTS or later
- Ultraleap Tracking Gemini 5.6+
- (Tested on Windows with Ultraleap Unity plugin 5.10)
+ - Tilt Five Driver 1.1.0+
+ - Unity 2019.4 LTS or later
+ - Ultraleap Tracking Gemini 5.6+
+ - (Tested on Windows with Ultraleap Unity plugin 5.10)
 
 ![CAD design](imgs/tiltfive_CAD_Assm.PNG)
 
 ## 3D Printed bracket (optional)
  For the HMD-mode tracked example such as the chess game, the Ultraleap device is mounted to the glasses. The STL files can be found in "Assets > CAD Files" The mount was printed using a consumer FDM printer with the following settings:
--0.2mm layer height
--3 perimeters
--10% infill
--No supports
--Skirt outlines or raft recommended
+ - 0.2mm layer height
+ - 3 perimeters
+ - 10% infill
+ - No supports
+ - Skirt outlines or raft recommended
 
 ![print orientation](imgs/tiltfive_mount2_printOrientation3.PNG)
 ![print orientation](imgs/print_post.jpg)
@@ -37,7 +36,7 @@
 ![TiltFive hand interaction board game](imgs/hmd_interaction.gif)
 
 ### Hand Cursor
- The example scene demonstrates 2 methods of controlling a virtual cursor with your hands. Sometimes it's not practical to interact 1-to-1 with virtual objects and selecting from a distance is preferable. The script 'Hand 2D Projection' on the 'Leap Rig' maps two cursors to hand movements. The first is a direct mapping between hand position and cursor position. The second cursor is determined from a raycast starting from a virtual shoulder through users' index finger knuckle. This enables a more natural directionality to the cursor and cursor position is invariant to if hand is pinching or not.
+ The example scene demonstrates two methods of controlling a virtual cursor with your hands. Sometimes it's not practical to interact 1-to-1 with virtual objects and selecting from a distance is preferable. The script 'Hand 2D Projection' on the 'Leap Rig' maps two cursors to hand movements. The first is a direct mapping between hand position and cursor position. The second cursor is determined from a raycast starting from a virtual shoulder through users' index finger knuckle. This enables a more natural directionality to the cursor, and the cursor position becomes invariant to pinch gesture.
 ![TiltFive hand interaction board game](imgs/handcursor.gif)
 
 ### Turntable
