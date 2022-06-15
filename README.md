@@ -17,8 +17,6 @@
  - Tracking space alignment can be accomplished by either moving the 'Leap Rig' gameobject for Desktop examples, and adjusting the 'Device Origin' in LeapXRServiceProvider for HMD modes (e.g the chess example)
  - Instead of trying to align Tilt Five and Leap space and depending on touch interactions, mapping hand input to a virtual world action can improve interaction consistency.
 
-![CAD design](imgs/tiltfive_CAD_Assm.PNG)
-
 ## 3D Printed bracket (optional)
  For the HMD-mode tracked example such as the chess game, the Ultraleap device is mounted to the glasses. The STL files can be found in ["Assets > CAD Files"](/Assets/CAD%20Files) The mount prints with a consumer FDM printer with the following settings:
  - 0.2mm layer height
@@ -31,6 +29,8 @@
 ![print orientation](imgs/print_post.jpg)
 
  The design includes sacrificial geometry instead of support material that needs to be removed (colored in orange in photo above). The mount adheres to the glasses using mounting tape, and the Ultraleap device is fastened using threadforming plastic screws. See the BOM in "Assets > CAD Files" for more info.
+
+![CAD design](imgs/tiltfive_CAD_Assm.PNG)
 
 ## Examples
 
