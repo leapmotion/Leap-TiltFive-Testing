@@ -28,7 +28,7 @@
 ![print orientation](imgs/tiltfive_mount2_printOrientation3.PNG)
 ![print orientation](imgs/print_post.jpg)
 
- The design includes sacrificial geometry instead of support material that needs to be removed (colored in orange in photo above). The mount adheres to the glasses using mounting tape, and the Ultraleap device is fastened using threadforming plastic screws. See the BOM in "Assets > CAD Files" for more info.
+ The design includes sacrificial geometry instead of support material that needs to be removed (colored in orange in photo above). The mount adheres to the glasses using mounting tape, and the Ultraleap device is fastened using threadforming plastic screws and 3D printed bushings. See the BOM and 'SIR170_screw_adapter.stl' in ["Assets > CAD Files"](/Assets/CAD%20Files) for more info.
 
 ![CAD design](imgs/tiltfive_CAD_Assm.PNG)
 
