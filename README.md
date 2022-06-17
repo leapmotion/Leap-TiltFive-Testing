@@ -49,6 +49,6 @@
 ![TiltFive hand interaction board game](imgs/turntable.gif)
 
 ### 3D User Interface (Desktop)
- This scene physically simulates buttons and sliders for user to try. The virtual UI panel floats at an angle above the board, and requires a good alignment between the Tilt Five and Leap’s space to feel real. Simply moving the Desktop-mode tracking device can better align your hands. The buttons simulate a mass-spring-damper system. Note the different field of views between Ultraleap tracking devices and where they are located. Design your UI accordingly.
+ This scene physically simulates buttons and sliders for user to try. The virtual UI panel floats at an angle above the board, and requires a good alignment between the Tilt Five and Leap’s space to feel real. Simply moving the Desktop-mode tracking device can better align your hands. The buttons simulate a mass-spring-damper system. Note the different field of views between Ultraleap tracking devices and where they are located. Design your UI accordingly. 
 ![TiltFive hand interaction UI panel](imgs/3dui.gif)
  

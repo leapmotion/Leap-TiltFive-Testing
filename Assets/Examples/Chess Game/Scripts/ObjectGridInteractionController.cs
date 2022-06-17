@@ -7,6 +7,8 @@ public class ObjectGridInteractionController : MonoBehaviour
 {
     public ObjectGrid objectGrid;
     public LeapServiceProvider _provider;
+
+    public Chirality _dominantHand = Chirality.Right;
     public float maxDistance = 0; //used to determine max proximity of hand to gamepiece
 
     public Dictionary<string,GridLocation> board { get{return objectGrid.board;}}
@@ -36,7 +38,10 @@ public class ObjectGridInteractionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Leap.Hand h = _provider.Get(Chirality.Right);
+
+        //TODO: allow either hand
+
+        Leap.Hand h = _provider.Get(_dominantHand);
 
         if(h != null){
             //Use hand position to highlight the nearest game piece
@@ -83,7 +88,6 @@ public class ObjectGridInteractionController : MonoBehaviour
                 lastClosest = null;
                 isHoveringOverOccupier = false;
             }
-                
         }
     }
 
