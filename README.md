@@ -18,21 +18,6 @@
  - Tracking space alignment can be accomplished by either moving the 'Leap Rig' gameobject for Desktop examples, or adjusting the 'Device Origin' in LeapXRServiceProvider for HMD modes (i.e. the chess example)
  - Instead of trying to align Tilt Five and Leap space and depending on 1-to-1 physically simulated interactions, sometimes mapping hand data to a heuristic can improve interaction consistency and user experience. See the chess example use proximity and pinch amount, and how the turntable example keeps track of fingertips within a volume instead of trying to simulate contact forces. 
 
-## 3D Printed bracket (optional)
- For the HMD-mode tracked example, the Ultraleap device is expected to be mounted to the glasses. The STL files can be found in ["Assets > CAD Files"](/Assets/CAD%20Files) The mount prints with a consumer FDM printer with the following settings:
- - 0.2mm layer height
- - 3 perimeters
- - 10% infill
- - No supports
- - Skirt outlines or raft recommended
-
-![print orientation](imgs/tiltfive_mount2_printOrientation3.PNG)
-![print orientation](imgs/print_post.jpg)
-
- The design includes sacrificial geometry instead of support material that needs to be removed (colored in orange in photo above). The mount adheres to the glasses using mounting tape, and the Ultraleap device is fastened using threadforming plastic screws and 3D printed bushings. See the BOM and 'SIR170_screw_adapter.stl' in ["Assets > CAD Files"](/Assets/CAD%20Files) for more info.
-
-![CAD design](imgs/tiltfive_CAD_Assm.PNG)
-
 ## Examples
 
  Using Ultraleap hand tracking mounted to Tilt Five glasses virtual boardgames are literally in reach. Note that each example is designed around the device orientation. Some interactions are better suited for certain device orientations. For example, the chess game interaction would not work well in Desktop-mode because the hand often exceeds the field of view of camera when reaching over the board. As an alternative, the 'Hand Cursor' scene demonstrates 2 methods of impelementing a virtual cursor to interact with objects out of reach. Furthermore, when direction interaction is required, 'Extendo Hands' example shows how to project the virtual hands past the Tilt Five board.
@@ -57,5 +42,20 @@
  This scene physically simulates buttons and sliders for user to try. The virtual UI panel floats at an angle above the board, and requires a good alignment between the Tilt Five and Leap’s space to feel real. Simply moving the Desktop-mode tracking device can better align your hands. The buttons simulate a mass-spring-damper system. Note the different field of views between Ultraleap tracking devices and where they are located. Design your UI accordingly.
 
 ![TiltFive hand interaction UI panel](imgs/3dui.gif)
+
+## 3D Printed bracket (optional)
+ For the HMD-mode tracked example, the Ultraleap device is expected to be mounted to the glasses. The STL files can be found in ["Assets > CAD Files"](/Assets/CAD%20Files) The mount prints with a consumer FDM printer with the following settings:
+ - 0.2mm layer height
+ - 3 perimeters
+ - 10% infill
+ - No supports
+ - Skirt outlines or raft recommended
+
+![print orientation](imgs/tiltfive_mount2_printOrientation3.PNG)
+![print orientation](imgs/print_post.jpg)
+
+ The design includes sacrificial geometry instead of support material that needs to be removed (colored in orange in photo above). The mount adheres to the glasses using mounting tape, and the Ultraleap device is fastened using threadforming plastic screws and 3D printed bushings. See the BOM and 'SIR170_screw_adapter.stl' in ["Assets > CAD Files"](/Assets/CAD%20Files) for more info.
+
+![CAD design](imgs/tiltfive_CAD_Assm.PNG)
 
  
