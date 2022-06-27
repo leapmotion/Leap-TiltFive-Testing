@@ -1926,7 +1926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150868255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.045, z: -0.04}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_Children:
   - {fileID: 438352044}
@@ -1961,7 +1961,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectGrid: {fileID: 438352045}
   _provider: {fileID: 424145589}
-  maxDistance: 1.2
+  _dominantHand: 1
+  maxDistance: 0.09
   gridHighlight: {fileID: 903534890}
   pinchThreshold: 0.7
 --- !u!4 &1195653047 stripped
