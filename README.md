@@ -43,7 +43,7 @@
 
 ### Extendo Hands (Desktop)
  Although virtual images can extend down into the Tilt Five board, our hands cannot. However, this example demonstrates using a post process to project the Leap hands as a function of arm extension. In addition, it demonstrates the use of Interaction Engine as an extensible way to interact naturally with virtual objects.
-![TiltFive hand reaching example](imgs.extendohands.gif)
+![TiltFive hand reaching example](imgs/extendohands.gif)
 
 ### Hand Cursor (Desktop)
  The example scene demonstrates two methods of controlling a virtual cursor with your hands. Sometimes it's not practical to interact 1-to-1 with virtual objects and selecting from a distance is preferable. The script 'Hand 2D Projection' on the 'Leap Rig' maps two cursors to hand movements. The first is a direct mapping between hand position and cursor position. The second cursor is determined from a raycast starting from a virtual shoulder through users' index finger knuckle. This enables a more natural directionality to the cursor, and the cursor position becomes invariant to pinch gesture. Note that this example demonstrates a different world scaling ( Content Scale: 1 world unit = 5cm) in order to highlight the advantage of virtual cursors in the not world scale context.
