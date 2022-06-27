@@ -13,6 +13,7 @@
  - (Tested on Windows with [Ultraleap Unity plugin 5.11.0](https://github.com/ultraleap/UnityPlugin/releases/) )
 
 ## Basic Scene Setup:
+ - If hands are not showing, open the Ultraleap Control Panel to check if image is inverted
  - Ultraleap tracking uses the scale of 1 world unit = 1 real world meter. Set the 'Content Scale' in Tilt Five Manager' gameobject to 1 meter for reference
  - Tracking space alignment can be accomplished by either moving the 'Leap Rig' gameobject for Desktop examples, or adjusting the 'Device Origin' in LeapXRServiceProvider for HMD modes (i.e. the chess example)
  - Instead of trying to align Tilt Five and Leap space and depending on 1-to-1 physically simulated interactions, sometimes mapping hand data to a heuristic can improve interaction consistency and user experience. See the chess example use proximity and pinch amount, and how the turntable example keep track of fingertips within a volume instead of trying to simulate contact forces. 
