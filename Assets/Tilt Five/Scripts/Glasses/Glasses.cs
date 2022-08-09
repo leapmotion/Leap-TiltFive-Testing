@@ -440,7 +440,7 @@ namespace TiltFive
                 return Display.GetGlassesAvailability();
             }
 
-            protected override bool TryGetPoseFromPlugin(out Pose pose, GlassesSettings settings, GameBoardSettings gameBoardSettings)
+            protected override bool TryGetPoseFromPlugin(out Pose pose, GlassesSettings settings, ScaleSettings scaleSettings, GameBoardSettings gameBoardSettings)
             {
                 // Unity reference frames:
                 //

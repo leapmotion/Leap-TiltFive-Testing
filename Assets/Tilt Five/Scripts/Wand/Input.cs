@@ -14,81 +14,28 @@
  * limitations under the License.
  */
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+using UnityEngine.InputSystem;
+#endif
 
 using TiltFive.Logging;
 using TiltFive;
 
 namespace TiltFive
 {
-    /// <summary>
-    /// The button states for the wand at a moment in time.
-    /// </summary>
-    /*internal struct WandControlsState
-    {
-        public Int64 Timestamp;
-
-        public bool System;
-        public bool One;
-        public bool Two;
-        public bool Y;
-        public bool B;
-        public bool A;
-        public bool X;
-        public bool Z;
-
-        public Vector2 Stick;
-        public float Trigger;
-
-        public WandControlsState(Int64 timestamp, UInt32 buttons, Vector2 stick, float trigger)
-        {
-            Timestamp = timestamp;
-
-            System  = (buttons & (UInt32)Input.WandButton.System)   == (UInt32)Input.WandButton.System;
-            One     = (buttons & (UInt32)Input.WandButton.One)      == (UInt32)Input.WandButton.One;
-            Two     = (buttons & (UInt32)Input.WandButton.Two)      == (UInt32)Input.WandButton.Two;
-            Y       = (buttons & (UInt32)Input.WandButton.Y)        == (UInt32)Input.WandButton.Y;
-            B       = (buttons & (UInt32)Input.WandButton.B)        == (UInt32)Input.WandButton.B;
-            A       = (buttons & (UInt32)Input.WandButton.A)        == (UInt32)Input.WandButton.A;
-            X       = (buttons & (UInt32)Input.WandButton.X)        == (UInt32)Input.WandButton.X;
-            Z       = (buttons & (UInt32)Input.WandButton.Z)        == (UInt32)Input.WandButton.Z;
-            
-            Stick = stick;
-            Trigger = trigger;
-        }
-
-        public bool GetButtonState(Input.WandButton button)
-        {
-            switch (button)
-            {
-                case Input.WandButton.System:
-                    return System;
-                case Input.WandButton.One:
-                    return One;
-                case Input.WandButton.Two:
-                    return Two;
-                case Input.WandButton.Y:
-                    return Y;
-                case Input.WandButton.B:
-                    return B;
-                case Input.WandButton.A:
-                    return A;
-                case Input.WandButton.X:
-                    return X;
-                default:
-                    return Z;
-            }
-        }
-    }*/
-
     public static class Input
     {
         #region Private Fields
 
         private static Dictionary<ControllerIndex, T5_ControllerState?> currentWandStates;
         private static Dictionary<ControllerIndex, T5_ControllerState?> previousWandStates;
+
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+        private static Dictionary<ControllerIndex, WandDevice> wandDevices;
+#endif
 
         // Scan for new wands every half second.
         private static DateTime lastScanAttempt = System.DateTime.MinValue;
@@ -365,49 +312,34 @@ namespace TiltFive
 
         public static void Update()
         {
-            var currentTime = System.DateTime.Now;
-            var timeSinceLastScan = currentTime - lastScanAttempt;
 
-            // Scan for wands if necessary.
-            // TODO: Implement more robust disconnect detection, communicate wand availability events to users, offer user option to swap wands.
-            if(timeSinceLastScan.TotalSeconds >= wandScanRate
-                && (!GetWandAvailability(ControllerIndex.Primary) || !GetWandAvailability(ControllerIndex.Secondary)))
-            {
-                ScanForWands();
-                lastScanAttempt = currentTime;
-                return;
-            }
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+            // Shuffle the cached wand controls states
+            GetLatestWandControlsStates();
 
-            // Replace the previous wand states with the stale current value.
-            previousWandStates[ControllerIndex.Primary] = currentWandStates[ControllerIndex.Primary];
-            previousWandStates[ControllerIndex.Secondary] = currentWandStates[ControllerIndex.Secondary];
+            // Add/Remove wand devices if necessary
+            ManageWandDevice(ControllerIndex.Primary);
+            ManageWandDevice(ControllerIndex.Secondary);
 
-            // Get the state of the wand held in the user's dominant hand.
-            currentWandStates[ControllerIndex.Primary] = (TryGetWandControlsState(out var primaryWandControlsState, ControllerIndex.Primary))
-                ? primaryWandControlsState
-                : null;
+            // Inject the latest wand control state into the input system
+            QueueInputEvents(ControllerIndex.Primary);
+            QueueInputEvents(ControllerIndex.Secondary);
+#endif
 
-            // Get the state of the wand held in the user's non-dominant hand.
-            currentWandStates[ControllerIndex.Secondary] = (TryGetWandControlsState(out var secondaryWandControlsState, ControllerIndex.Secondary))
-                ? secondaryWandControlsState
-                : null;
-            }
+            TryScanForWands();
 
-        internal static bool ScanForWands()
-        {
-            int result = 1;
-
-            try
-            {
-                result = NativePlugin.ScanForWands();
-            }
-            catch (Exception e)
-            {
-                Log.Error(e.Message);
-            }
-
-            return (0 == result);
+#if !UNITY_2019_1_OR_NEWER || !INPUTSYSTEM_AVAILABLE
+            GetLatestWandControlsStates();
+#endif
         }
+
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+        public static void OnDisable()
+        {
+            RemoveWandDevice(ControllerIndex.Primary);
+            RemoveWandDevice(ControllerIndex.Secondary);
+        }
+#endif
 
         internal static bool TryGetWandControlsState(out T5_ControllerState? controllerState,
             ControllerIndex controllerIndex = ControllerIndex.Primary)
@@ -452,8 +384,139 @@ namespace TiltFive
                 { ControllerIndex.Secondary, null }
             };
 
-            ScanForWands();
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+            wandDevices = new Dictionary<ControllerIndex, WandDevice>();
+#endif
+
+            TryScanForWands();
         }
+
+        private static void GetLatestWandControlsStates()
+        {
+            // Replace the previous wand states with the stale current value.
+            previousWandStates[ControllerIndex.Primary] = currentWandStates[ControllerIndex.Primary];
+            previousWandStates[ControllerIndex.Secondary] = currentWandStates[ControllerIndex.Secondary];
+
+            // Get the state of the wand held in the user's dominant hand.
+            currentWandStates[ControllerIndex.Primary] = (TryGetWandControlsState(out var primaryWandControlsState, ControllerIndex.Primary))
+                ? primaryWandControlsState
+                : null;
+
+            // Get the state of the wand held in the user's non-dominant hand.
+            currentWandStates[ControllerIndex.Secondary] = (TryGetWandControlsState(out var secondaryWandControlsState, ControllerIndex.Secondary))
+                ? secondaryWandControlsState
+                : null;
+        }
+
+        private static bool TryScanForWands()
+        {
+            var currentTime = System.DateTime.Now;
+            var timeSinceLastScan = currentTime - lastScanAttempt;
+
+            // Scan for wands if necessary.
+            // TODO: Implement more robust disconnect detection, communicate wand availability events to users, offer user option to swap wands.
+            if (timeSinceLastScan.TotalSeconds >= wandScanRate
+                && (!GetWandAvailability(ControllerIndex.Primary) || !GetWandAvailability(ControllerIndex.Secondary)))
+            {
+                int result = 1;
+
+                try
+                {
+                    result = NativePlugin.ScanForWands();
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e.Message);
+                }
+
+                lastScanAttempt = currentTime;
+                return (0 == result);
+            }
+
+            return false;
+        }
+
+
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+        private static void QueueInputEvents(ControllerIndex controllerIndex)
+        {
+            // Do nothing if the indicated device isn't available
+            if(!wandDevices.TryGetValue(controllerIndex, out var wandDevice))
+            {
+                return;
+            }
+
+            var wandStateResult = currentWandStates[controllerIndex];
+            if (!wandStateResult.HasValue)
+            {
+                // Inject empty state
+                InputSystem.QueueStateEvent(wandDevice, new WandState());
+                return;
+            }
+
+            var wandState = wandStateResult.Value;
+
+            if (wandState.ButtonsValid)
+            {
+                var buttons = wandState.ButtonsState;
+                InputSystem.QueueDeltaStateEvent(wandDevice.TiltFive, buttons.T5);
+                InputSystem.QueueDeltaStateEvent(wandDevice.One, buttons.One);
+                InputSystem.QueueDeltaStateEvent(wandDevice.Two, buttons.Two);
+                InputSystem.QueueDeltaStateEvent(wandDevice.Three, buttons.Three);
+                InputSystem.QueueDeltaStateEvent(wandDevice.A, buttons.A);
+                InputSystem.QueueDeltaStateEvent(wandDevice.B, buttons.B);
+                InputSystem.QueueDeltaStateEvent(wandDevice.X, buttons.X);
+                InputSystem.QueueDeltaStateEvent(wandDevice.Y, buttons.Y);
+            }
+
+            if (wandState.AnalogValid)
+            {
+                InputSystem.QueueDeltaStateEvent(wandDevice.Stick, (Vector2)wandState.Stick);
+                InputSystem.QueueDeltaStateEvent(wandDevice.Trigger, wandState.Trigger);
+            }
+
+            //InputSystem.QueueDeltaStateEvent(wandDevice.Battery, (int)wandState.Battery);
+        }
+
+        private static void AddWandDevice(ControllerIndex controllerIndex)
+        {
+            if(GetWandAvailability(controllerIndex))
+            {
+                WandDevice wandDevice = InputSystem.AddDevice<WandDevice>();
+                wandDevice.ControllerIndex = controllerIndex;
+                wandDevices[controllerIndex] = wandDevice;
+            }
+        }
+
+        private static void RemoveWandDevice(ControllerIndex controllerIndex)
+        {
+            if(wandDevices.TryGetValue(controllerIndex, out var wandDevice))
+            {
+                InputSystem.RemoveDevice(wandDevice);
+                wandDevices.Remove(controllerIndex);
+            }
+        }
+
+        private static void ManageWandDevice(ControllerIndex controllerIndex)
+        {
+            // If we already have a wand device...
+            if (wandDevices.TryGetValue(controllerIndex, out var wandDevice))
+            {
+                // ...and we can no longer reach it...
+                if (!GetWandAvailability(ControllerIndex.Primary))
+                {
+                    // ...go ahead and remove it.
+                    RemoveWandDevice(controllerIndex);
+                }
+            }
+            // If we don't have a wand device, and we can reach one...
+            else if (GetWandAvailability(controllerIndex))
+            {
+                // ...go ahead and add it
+                AddWandDevice(controllerIndex);
+            }
+        }
+#endif
 
         private static bool GetButton(this T5_ControllerState controllerState, WandButton button)
         {

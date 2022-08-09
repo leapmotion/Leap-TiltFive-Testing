@@ -7,7 +7,8 @@
         "TiltFiveGlasses",
         "TiltFiveGameBoard",
         "TiltFiveUtility",
-        "TiltFiveLogging"
+        "TiltFiveLogging",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -16,6 +17,11 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+    "versionDefines": [
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.0",
+            "define": "INPUTSYSTEM_AVAILABLE"
+        }
+    ]
 }

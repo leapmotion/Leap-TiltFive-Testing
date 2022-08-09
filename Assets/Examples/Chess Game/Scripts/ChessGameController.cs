@@ -51,7 +51,7 @@ public class ChessGameController : MonoBehaviour
     void TryMovePiece(string coord, GameObject go){
 
         //TODO: implement chess rules here
-        Debug.Log("Trying " + go.name +" to: " + coord +"...");
+        //Debug.Log("Trying " + go.name +" to: " + coord +"...");
 
     }
 }

@@ -1,0 +1,21 @@
+{
+    "name": "TiltFiveEditor",
+    "references": [
+        "TiltFive",
+        "TiltFiveCore",
+        "TiltFiveGlasses",
+        "TiltFiveSettings",
+        "TiltFiveWand"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_EDITOR"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
+
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+using UnityEngine.InputSystem;
+#endif
 
 using TiltFive;
 using TiltFive.Logging;
@@ -28,7 +30,17 @@ namespace TiltFive
     /// The Tilt Five manager.
     /// </summary>
     [DisallowMultipleComponent]
+#if !UNITY_2019_1_OR_NEWER || !INPUTSYSTEM_AVAILABLE
+    // Workaround to enable inputs to be collected before other scripts execute their Update() functions.
+    // This is unnecessary if we're using the Input System's OnBeforeUpdate() to collect fresh inputs.
     [DefaultExecutionOrder(-500)]
+#else
+    // If the Input System's OnBeforeUpdate is available, set TiltFiveManager's execution order to be very late.
+    // This is desirable in two similar scenarios:
+    // - Our Update() executes last, providing the freshest pose data possible to any scripts using LateUpdate().
+    // - Our LateUpdate() executes last, providing the freshest pose data possible before we render to the glasses.
+    [DefaultExecutionOrder(500)]
+#endif
     public class TiltFiveManager : TiltFive.SingletonComponent<TiltFiveManager>
     {
         /// <summary>
@@ -44,7 +56,7 @@ namespace TiltFive
         /// <summary>
         /// The glasses runtime configuration data.
         /// </summary>
-		public GlassesSettings glassesSettings;
+        public GlassesSettings glassesSettings;
 
         /// <summary>
         /// The wand runtime configuration data for the primary wand.
@@ -59,13 +71,13 @@ namespace TiltFive
         /// <summary>
         /// The log settings.
         /// </summary>
-		public LogSettings logSettings = new LogSettings();
+        public LogSettings logSettings = new LogSettings();
 
 #if UNITY_EDITOR
         /// <summary>
         /// <b>EDITOR-ONLY</b> The editor settings.
         /// </summary>
-		public EditorSettings editorSettings = new EditorSettings();
+        public EditorSettings editorSettings = new EditorSettings();
 
 #endif
 
@@ -75,7 +87,7 @@ namespace TiltFive
         /// <summary>
         /// Awake this instance.
         /// </summary>
-		void Awake()
+        void Awake()
         {
             // Apply log settings
             Log.LogLevel = logSettings.level;
@@ -92,25 +104,39 @@ namespace TiltFive
         /// Start this instance.
         /// </summary>
         /// <returns>On complete.</returns>
-		IEnumerator Start()
+        IEnumerator Start()
         {
             yield return StartCoroutine("CommitBuffers");
         }
 
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+        /// <summary>
+        /// Prepares for 3rd party scripts' Update() calls
+        /// </summary>
+        private void OnBeforeUpdate()
+        {
+            NeedsDriverUpdate();
+            Input.Update();     // Should only be executed once per frame
+            Update();
+        }
+#endif
+
         /// <summary>
         /// Update this instance.
         /// </summary>
-		void Update()
+        void Update()
         {
+#if !UNITY_2019_1_OR_NEWER || !INPUTSYSTEM_AVAILABLE
             NeedsDriverUpdate();
-            Input.Update();
-
+            Input.Update();     // Should only be executed once per frame
+#endif
             if (!Glasses.Validate(glassesSettings))
             {
                 Glasses.Reset(glassesSettings);
             }
             GetLatestPoseData();
         }
+
 
         /// <summary>
         /// Update this instance after all components have finished executing their Update() functions.
@@ -191,9 +217,21 @@ namespace TiltFive
         /// <summary>
         /// Called when the GameObject is enabled.
         /// </summary>
-		void OnEnable()
+        private void OnEnable()
         {
             Glasses.Reset(glassesSettings);
+
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+            InputSystem.onBeforeUpdate += OnBeforeUpdate;
+#endif
+        }
+
+        private void OnDisable()
+        {
+#if UNITY_2019_1_OR_NEWER && INPUTSYSTEM_AVAILABLE
+            InputSystem.onBeforeUpdate -= OnBeforeUpdate;
+            Input.OnDisable();
+#endif
         }
 
         /// <summary>
@@ -239,7 +277,7 @@ namespace TiltFive
         /// <summary>
         /// <b>EDITOR-ONLY</b>
         /// </summary>
-		void OnValidate()
+        void OnValidate()
         {
             Log.LogLevel = logSettings.level;
             Log.TAG = logSettings.TAG;
@@ -250,7 +288,7 @@ namespace TiltFive
         /// <summary>
         /// Draws Gizmos in the Editor Scene view.
         /// </summary>
-		void OnDrawGizmos()
+        void OnDrawGizmos()
         {
             if (gameBoardSettings.currentGameBoard != null)
             {

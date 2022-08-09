@@ -73,7 +73,7 @@ namespace TiltFive
 
             if (GetTrackingAvailability(settings))
             {
-                if (TryGetPoseFromPlugin(out Pose updatedPose, settings, gameBoardSettings))
+                if (TryGetPoseFromPlugin(out Pose updatedPose, settings, scaleSettings, gameBoardSettings))
                 {
                     pose_GameboardSpace = updatedPose;
                 }
@@ -92,13 +92,12 @@ namespace TiltFive
             Vector3 pos_UnityWorldSpace = gameBoardSettings.currentGameBoard.rotation *
                 (scaleToUWRLD_UGBD * pose_GameBoardSpace.position) + gameBoardSettings.gameBoardCenter;
 
-            Quaternion rotToUGLS_UWRLD = pose_GameBoardSpace.rotation * Quaternion.Inverse(gameBoardSettings.currentGameBoard.rotation);
-            Quaternion rot_UnityWorldSpace = Quaternion.Inverse(rotToUGLS_UWRLD);
+            Quaternion rot_UnityWorldSpace = GameboardToWorldSpace(pose_GameBoardSpace.rotation, gameBoardSettings);
 
             return new Pose(pos_UnityWorldSpace, rot_UnityWorldSpace);
         }
 
-        protected static Vector3 GameBoardToWorldSpace(Vector3 position,
+        protected static Vector3 GameboardToWorldSpace(Vector3 position,
             ScaleSettings scaleSettings, GameBoardSettings gameBoardSettings)
         {
             float scaleToUWRLD_UGBD = scaleSettings.GetScaleToUWRLD_UGBD(gameBoardSettings.gameBoardScale);
@@ -111,6 +110,15 @@ namespace TiltFive
         {
             // Swap Y and Z to change between GBD and UGBD
             return new Vector3(pos_GBD.x, pos_GBD.z, pos_GBD.y);
+        }
+
+        protected static Quaternion GameboardToWorldSpace(Quaternion rotation, GameBoardSettings gameBoardSettings)
+        {
+            // TODO: Rename this? UGLS doesn't seem quite right... probably vestigial after copying from elsewhere.
+            Quaternion rotToUGLS_UWRLD = rotation * Quaternion.Inverse(gameBoardSettings.currentGameBoard.rotation);
+            Quaternion rot_UnityWorldSpace = Quaternion.Inverse(rotToUGLS_UWRLD);
+
+            return rot_UnityWorldSpace;
         }
 
         #endregion Protected Functions
@@ -147,7 +155,7 @@ namespace TiltFive
         /// <param name="rotation"></param>
         /// <param name="settings"></param>
         /// <returns></returns>
-        protected abstract bool TryGetPoseFromPlugin(out Pose pose, T settings, GameBoardSettings gameBoardSettings);
+        protected abstract bool TryGetPoseFromPlugin(out Pose pose, T settings, ScaleSettings scaleSettings, GameBoardSettings gameBoardSettings);
 
         /// <summary>
         /// Sets the pose of the object(s) being driven by TrackableCore.

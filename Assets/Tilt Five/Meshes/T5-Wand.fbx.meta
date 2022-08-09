@@ -4,62 +4,117 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Wand Plastics Update v32b
-    100004: Wand Plastics Update v32b.001
-    100006: Wand Plastics Update v32b.002
-    100008: Wand Plastics Update v32b.003
-    100010: Wand Plastics Update v32b.004
-    100012: Wand Plastics Update v32b.005
-    100014: Wand Plastics Update v32b.006
-    100016: Wand Plastics Update v32b.007
-    100018: Wand Plastics Update v32b.008
-    100020: Wand Plastics Update v32b.009
-    100022: Wand Plastics Update v32b.011
+    100002: Handle
+    100004: Stick
+    100006: Trigger
+    100008: Button_One
+    100010: Button_Two
+    100012: Button_X
+    100014: Button_Y
+    100016: Button_B
+    100018: Button_A
+    100020: Button_T5
+    100022: Pointer
+    100024: Button_A
+    100026: Button_B
+    100028: Button_One
+    100030: Button_T5
+    100032: Button_Two
+    100034: Button_X
+    100036: Button_Y
+    100038: Handle
+    100040: Pointer
+    100042: Stick
+    100044: Trigger
     400000: //RootNode
-    400002: Wand Plastics Update v32b
-    400004: Wand Plastics Update v32b.001
-    400006: Wand Plastics Update v32b.002
-    400008: Wand Plastics Update v32b.003
-    400010: Wand Plastics Update v32b.004
-    400012: Wand Plastics Update v32b.005
-    400014: Wand Plastics Update v32b.006
-    400016: Wand Plastics Update v32b.007
-    400018: Wand Plastics Update v32b.008
-    400020: Wand Plastics Update v32b.009
-    400022: Wand Plastics Update v32b.011
-    2300000: Wand Plastics Update v32b
-    2300002: Wand Plastics Update v32b.001
-    2300004: Wand Plastics Update v32b.002
-    2300006: Wand Plastics Update v32b.003
-    2300008: Wand Plastics Update v32b.004
-    2300010: Wand Plastics Update v32b.005
-    2300012: Wand Plastics Update v32b.006
-    2300014: Wand Plastics Update v32b.007
-    2300016: Wand Plastics Update v32b.008
-    2300018: Wand Plastics Update v32b.009
-    2300020: Wand Plastics Update v32b.011
-    3300000: Wand Plastics Update v32b
-    3300002: Wand Plastics Update v32b.001
-    3300004: Wand Plastics Update v32b.002
-    3300006: Wand Plastics Update v32b.003
-    3300008: Wand Plastics Update v32b.004
-    3300010: Wand Plastics Update v32b.005
-    3300012: Wand Plastics Update v32b.006
-    3300014: Wand Plastics Update v32b.007
-    3300016: Wand Plastics Update v32b.008
-    3300018: Wand Plastics Update v32b.009
-    3300020: Wand Plastics Update v32b.011
-    4300000: Wand Plastics Update v32b
-    4300002: Wand Plastics Update v32b.001
-    4300004: Wand Plastics Update v32b.002
-    4300006: Wand Plastics Update v32b.003
-    4300008: Wand Plastics Update v32b.004
-    4300010: Wand Plastics Update v32b.005
-    4300012: Wand Plastics Update v32b.006
-    4300014: Wand Plastics Update v32b.007
-    4300016: Wand Plastics Update v32b.008
-    4300018: Wand Plastics Update v32b.009
-    4300020: Wand Plastics Update v32b.011
+    400002: Handle
+    400004: Stick
+    400006: Trigger
+    400008: Button_One
+    400010: Button_Two
+    400012: Button_X
+    400014: Button_Y
+    400016: Button_B
+    400018: Button_A
+    400020: Button_T5
+    400022: Pointer
+    400024: Button_A
+    400026: Button_B
+    400028: Button_One
+    400030: Button_T5
+    400032: Button_Two
+    400034: Button_X
+    400036: Button_Y
+    400038: Handle
+    400040: Pointer
+    400042: Stick
+    400044: Trigger
+    2300000: Handle
+    2300002: Stick
+    2300004: Trigger
+    2300006: Button_One
+    2300008: Button_Two
+    2300010: Button_X
+    2300012: Button_Y
+    2300014: Button_B
+    2300016: Button_A
+    2300018: Button_T5
+    2300020: Pointer
+    2300022: Button_A
+    2300024: Button_B
+    2300026: Button_One
+    2300028: Button_T5
+    2300030: Button_Two
+    2300032: Button_X
+    2300034: Button_Y
+    2300036: Handle
+    2300038: Pointer
+    2300040: Stick
+    2300042: Trigger
+    3300000: Handle
+    3300002: Stick
+    3300004: Trigger
+    3300006: Button_One
+    3300008: Button_Two
+    3300010: Button_X
+    3300012: Button_Y
+    3300014: Button_B
+    3300016: Button_A
+    3300018: Button_T5
+    3300020: Pointer
+    3300022: Button_A
+    3300024: Button_B
+    3300026: Button_One
+    3300028: Button_T5
+    3300030: Button_Two
+    3300032: Button_X
+    3300034: Button_Y
+    3300036: Handle
+    3300038: Pointer
+    3300040: Stick
+    3300042: Trigger
+    4300000: Handle
+    4300002: Stick
+    4300004: Trigger
+    4300006: Button_One
+    4300008: Button_Two
+    4300010: Button_X
+    4300012: Button_Y
+    4300014: Button_B
+    4300016: Button_A
+    4300018: Button_T5
+    4300020: Pointer
+    4300022: Pointer
+    4300024: Button_T5
+    4300026: Button_A
+    4300028: Button_B
+    4300030: Button_Y
+    4300032: Button_X
+    4300034: Button_Two
+    4300036: Button_One
+    4300038: Trigger
+    4300040: Stick
+    4300042: Handle
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -101,7 +156,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.025
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

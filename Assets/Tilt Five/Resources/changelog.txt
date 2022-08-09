@@ -1,3 +1,30 @@
+## [1.2.0] - Huggable Hellhound
+* Control Panel
+  * Fix error reporting for firmware validity from the system tray
+  * Logging file size reductions for users who turn on developer mode's extended logging
+
+* Glasses
+  * Reconnecting the Glasses in the middle of the game after disconnecting them will be less likely to fail to restore video to the Glasses
+  * Consistent 60 FPS display framerate (developers should use a constant 60 FPS target to benefit)
+  * Fan speed is more consistently maintained (note: does not apply to Beta glasses hardware)
+  * Gameboard position tracking improvements
+
+* Wand
+  * Significantly improved latency for movement tracking
+  * Tracking is more robust when communication to the Wand has packet losses
+
+* Drivers and Tilt Five Software Install
+  * Introducing support for MixCast webcam composition streaming; you must be using the Driver version 1.2 or later with content which has integrated MixCast support
+
+* Native Development Kit Beta (Developer SDK)
+  * Change where the graphics context is created to initialization instead of when Glasses are acquired
+  * You will need to update your use of the NDK with this version; note that NDK is still in beta and breaking changes may occur
+
+* Unity Plug-in (Developer SDK)
+  * Support for InputSystem for Wands; Now you can use the InputSystem methods to access wand events and pose
+  * Update of the "Tilt Five Wand Model" prefab so the scaling of the wand model is accurate at a 1:1 with world space, and sets its origin to be at the handhold pose center in the wand body, aligned directly with the tip
+  * Fixed a bug where the same wand button events could occasionally fire on two consecutive frames
+
 ## [1.1.0] - Gnarly Gnoll
 * Control Panel
   * Support for XE Gameboards
