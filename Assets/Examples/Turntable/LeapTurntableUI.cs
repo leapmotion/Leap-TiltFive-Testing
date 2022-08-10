@@ -7,6 +7,7 @@ public class LeapTurntableUI : MonoBehaviour
     public LeapTurntable _turntable;
     public LineRenderer _upperLine;
     public LineRenderer _lowerLine;
+    public Outline outline;
     // Start is called before the first frame update
 
     public int circleVertNum = 16;
@@ -38,9 +39,11 @@ public class LeapTurntableUI : MonoBehaviour
     {
         RenderLines();
 
-        if(_turntable.fingertipCount > 0)
-            GetComponent<Renderer>().material.color = Color.yellow;
+        if (_turntable.fingertipCount > 0)
+            outline.enabled = true;
+        //GetComponent<Renderer>().material.color = Color.yellow;
         else
-            GetComponent<Renderer>().material.color = Color.white;
+            outline.enabled = false;
+            //GetComponent<Renderer>().material.color = Color.white;
     }
 }
