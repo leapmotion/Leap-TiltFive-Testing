@@ -273,5 +273,10 @@ namespace Leap
         private Vector _xBasisScaled;
         private Vector _yBasisScaled;
         private Vector _zBasisScaled;
+
+        public override string ToString()
+        {
+            return "Translation: " + _translation + ", Quaternion: " + _quaternion + ", Scale" + _scale;
+        }
     }
 }

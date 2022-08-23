@@ -16,6 +16,8 @@
 		[HDR]_FresnelColor("Fresnel Color", Color) = (1,1,1,0)
 		_FresnelPower("Fresnel Power", Range(0,1)) = 1
 
+		[MaterialToggle] _isLeftHand("Is Left Hand?", Int) = 0
+
 	}
 
 		CGINCLUDE #include "UnityCG.cginc"
@@ -54,15 +56,13 @@
 			{
 				Cull Back
 				Blend Zero One
-			}
-			Pass
-			{
-				Cull Front
 
 				CGPROGRAM
+				#include "../../../../Core/Runtime/Resources/LeapCG.cginc"
 				#pragma vertex vert
 				#pragma fragment frag
 
+				int _isLeftHand;
 				v2f vert(appdata_base v)
 				{
 					v2f o;
@@ -70,6 +70,32 @@
 					UNITY_INITIALIZE_OUTPUT(v2f, o);
 					UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
+					v.vertex = LeapGetLateVertexPos(v.vertex, _isLeftHand);
+					o.pos = UnityObjectToClipPos(v.vertex);
+					return o;
+				}
+
+				half4 frag(v2f i) :COLOR { return half4(0,0,0,0); }
+				ENDCG
+			}
+			Pass
+			{
+				Cull Front
+
+				CGPROGRAM
+				#include "../../../../Core/Runtime/Resources/LeapCG.cginc"
+				#pragma vertex vert
+				#pragma fragment frag
+
+				int _isLeftHand;
+				v2f vert(appdata_base v)
+				{
+					v2f o;
+					UNITY_SETUP_INSTANCE_ID(v);
+					UNITY_INITIALIZE_OUTPUT(v2f, o);
+					UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+					v.vertex = LeapGetLateVertexPos(v.vertex, _isLeftHand);
 					o.pos = UnityObjectToClipPos(v.vertex);
 					float3 norm = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal);
 					float2 offset = TransformViewToProjection(norm.xy);
@@ -95,7 +121,9 @@
 				#include "UnityCG.cginc" // for UnityObjectToWorldNormal
 				#include "UnityLightingCommon.cginc" // for _LightColor0
 				#include "AutoLight.cginc"
+				#include "../../../../Core/Runtime/Resources/LeapCG.cginc"
 
+				int _isLeftHand;
 				v2f vert(appdata_base v)
 				{
 					v2f o;
@@ -103,6 +131,7 @@
 					UNITY_INITIALIZE_OUTPUT(v2f, o);
 					UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
+					v.vertex = LeapGetLateVertexPos(v.vertex, _isLeftHand);
 					o.pos = UnityObjectToClipPos(v.vertex);
 					o.uv = v.texcoord;
 					half3 worldNormal = UnityObjectToWorldNormal(v.normal);
