@@ -299,13 +299,13 @@ namespace Leap.Unity
 
         // Extrapolate on Android to compensate for the latency introduced by its graphics
         // pipeline.
-#if UNITY_ANDROID && !UNITY_EDITOR
-    protected int ExtrapolationAmount = 0; // 15;
+//#if UNITY_ANDROID && !UNITY_EDITOR
+    protected int ExtrapolationAmount = 30;
     protected int BounceAmount = 70;
-#else
-        protected int ExtrapolationAmount = 0;
-        protected int BounceAmount = 0;
-#endif
+//#else
+//        protected int ExtrapolationAmount = 0;
+//        protected int BounceAmount = 0;
+//#endif
 
         protected Controller _leapController;
         protected bool _isDestroyed;
